@@ -1,0 +1,46 @@
+﻿@using MvcClient.Models
+@model TweetsViewModel
+
+<div id="dvShowGrid" class="hidegrid">
+    <table id="tweetsTable" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TimeStamp</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (TweetModel item in Model.TweetHashTable.Values)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stamp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.text)
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td> No Data to Display !</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#tweetsTable').DataTable();
+        $("#dvShowGrid").removeClass('hidegrid');
+    });
+</script>

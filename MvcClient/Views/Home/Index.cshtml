@@ -1,0 +1,49 @@
+﻿@using MvcClient.Models
+@using Newtonsoft.Json
+@model TweetsViewModel
+
+@{
+    ViewBag.Title = "Display Tweets";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="leftside">
+            Get Tweets!
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <button id="btnGo" class="btn-lg" onclick="GetTweets()">
+            Go
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="buffer"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-1">
+    </div>
+
+    <div class="col-sm-10">
+        <div id="RenderGrid">
+            @{Html.RenderPartial("TweetGrid", Model);}
+        </div>
+    </div>
+
+    <div class="col-sm-1">
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        function GetTweets() {
+            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))');
+        }
+    </script>
+}

@@ -16,7 +16,7 @@ namespace MvcClient.Controllers
         {
             TweetsViewModel tvm = new TweetsViewModel();
             await tvm.LoadTweets();
-            return PartialView("TweetGrid", tvm);
+            return PartialView("_TweetGrid", tvm);
         }
     }
 }

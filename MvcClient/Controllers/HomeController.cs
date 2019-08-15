@@ -7,7 +7,7 @@ namespace MvcClient.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        public ViewResult Index1()
         {
             return View();
         }

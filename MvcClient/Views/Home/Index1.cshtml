@@ -11,7 +11,9 @@
             $(document).ready(function () {
                 $('#btn').click(function () {
                     $.ajax({
+                        Host: 'badapi.iqvia.io',
                         type: 'GET',
+                        accept: 'application/json',
                         url: "https://badapi.iqvia.io/api/v1/Tweets?startDate=2016-01-01T00%3A00%3A00.000Z&endDate=2017-12-31T23%3A59%3A59.999Z",
                         dataType: 'json',
                         success: function (data) {

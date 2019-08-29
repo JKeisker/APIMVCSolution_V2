@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient", "MvcClient\MvcC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetsWebAPI", "TweetsWebAPI\TweetsWebAPI.csproj", "{7ED2868D-8980-46B8-AA90-2CD632CA0C8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetsDataLayer", "TweetsDataLayer\TweetsDataLayer.csproj", "{28E523B2-B954-4A66-A445-CCE065C62720}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7ED2868D-8980-46B8-AA90-2CD632CA0C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED2868D-8980-46B8-AA90-2CD632CA0C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED2868D-8980-46B8-AA90-2CD632CA0C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E523B2-B954-4A66-A445-CCE065C62720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E523B2-B954-4A66-A445-CCE065C62720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E523B2-B954-4A66-A445-CCE065C62720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E523B2-B954-4A66-A445-CCE065C62720}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

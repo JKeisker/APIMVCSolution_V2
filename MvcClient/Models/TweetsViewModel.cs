@@ -14,7 +14,7 @@ namespace MvcClient.Models
 
         public async Task LoadTweets()
         {
-            string Baseurl = "https://badapi.iqvia.io/";
+            string Baseurl = "http://localhost:3271/";
 
             if (client.BaseAddress == null)
             {
@@ -28,7 +28,7 @@ namespace MvcClient.Models
             do
             {
                 counter = 0;
-                HttpResponseMessage Res = await client.GetAsync("api/v1/Tweets?startDate=" + startDate + "&endDate=2017-12-31T23%3A59%3A59.999Z");
+                HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate + "&endDate=2017-12-31T23%3A59%3A59.999Z");
 
                 if (Res.IsSuccessStatusCode)
                 {

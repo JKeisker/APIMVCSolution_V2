@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b7440f070e0a4d009a43c5dbd1d4e47e" Name="Diagram1">
+      <Diagram DiagramId="dc7b8beadc2b4f6daca8a4d8059fe8d9" Name="Diagram1">
         <EntityTypeShape EntityType="TweetsDBModel.Tweet" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

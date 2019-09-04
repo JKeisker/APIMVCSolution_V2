@@ -53,51 +53,49 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tweet.cs">
-      <DependentUpon>TweetsEntityDataModel.tt</DependentUpon>
+      <DependentUpon>TweetsDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TweetsEntityDataModel.Context.cs">
+    <Compile Include="TweetsDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TweetsEntityDataModel.Context.tt</DependentUpon>
+      <DependentUpon>TweetsDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TweetsEntityDataModel.cs">
+    <Compile Include="TweetsDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TweetsEntityDataModel.tt</DependentUpon>
+      <DependentUpon>TweetsDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TweetsEntityDataModel.Designer.cs">
+    <Compile Include="TweetsDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TweetsEntityDataModel.edmx</DependentUpon>
+      <DependentUpon>TweetsDataModel.edmx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="TweetsEntityDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TweetsEntityDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="TweetsEntityDataModel.edmx.diagram">
-      <DependentUpon>TweetsEntityDataModel.edmx</DependentUpon>
+    <EntityDeploy Include="TweetsDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TweetsDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TweetsDataModel.edmx.diagram">
+      <DependentUpon>TweetsDataModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TweetsEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TweetsEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>TweetsEntityDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="TweetsEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TweetsEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>TweetsEntityDataModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="TweetsDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TweetsDataModel.edmx</DependentUpon>
+      <LastGenOutput>TweetsDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TweetsDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TweetsDataModel.edmx</DependentUpon>
+      <LastGenOutput>TweetsDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

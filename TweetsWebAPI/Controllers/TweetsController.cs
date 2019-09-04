@@ -12,9 +12,16 @@ namespace TweetsWebAPI.Controllers
     {
         public IEnumerable<Tweet> GET(string startDate, string endDate)
         {
-            using (TweetsDBEntities entities = new TweetsDBEntities())
+            DateTime newstartdate = DateTimeOffset.Parse(startDate).UtcDateTime;
+
+            using (TweetsDBEntities1 entities = new TweetsDBEntities1())
             {
-                return entities.Tweets.ToList();
+                var batch = (from t in entities.Tweets
+                             where (t.stamp >= newstartdate)
+                             orderby t.stamp
+                             select t).Take(50).ToList();
+
+                return batch;
             }
         }
     }

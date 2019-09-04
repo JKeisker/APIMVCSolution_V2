@@ -15,7 +15,7 @@ namespace TweetsDataLayer
     public partial class Tweet
     {
         public decimal id { get; set; }
-        public string stamp { get; set; }
+        public System.DateTime stamp { get; set; }
         public string text { get; set; }
     }
 }

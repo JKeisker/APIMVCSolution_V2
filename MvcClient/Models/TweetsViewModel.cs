@@ -41,15 +41,15 @@ namespace MvcClient.Models
                         if (!TweetHashTable.ContainsKey(item.id))
                         {
                             TweetHashTable.Add(item.id, new TweetModel { id = item.id, stamp = item.stamp, text = item.text });
-                            laststamp = item.stamp;
                         }
+                        laststamp = item.stamp;
                         counter++;
                     }
 
                     DateTime newstartdate = DateTimeOffset.Parse(laststamp).UtcDateTime;
                     startDate = newstartdate.Year.ToString() + "-" + string.Format("{0:00}", newstartdate.Month) + "-" + string.Format("{0:00}", newstartdate.Day) + "T" + string.Format("{0:00}", newstartdate.Hour) + "%3A" + string.Format("{0:00}", newstartdate.Minute) + "%3A" + string.Format("{0:00}", newstartdate.Second) + "." + string.Format("{0:000}", newstartdate.Millisecond) + "Z";
                 }
-            } while (counter == 100);
+            } while (counter == 50);
         }
     }
 

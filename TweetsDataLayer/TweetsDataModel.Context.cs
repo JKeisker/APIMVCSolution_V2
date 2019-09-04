@@ -13,10 +13,10 @@ namespace TweetsDataLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TweetsDBEntities : DbContext
+    public partial class TweetsDBEntities1 : DbContext
     {
-        public TweetsDBEntities()
-            : base("name=TweetsDBEntities")
+        public TweetsDBEntities1()
+            : base("name=TweetsDBEntities1")
         {
         }
     

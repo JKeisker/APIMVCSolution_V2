@@ -12,15 +12,18 @@ namespace TweetsWebAPI.Controllers
     {
         public IEnumerable<Tweet> GET(string startDate, string endDate)
         {
-            DateTime newstartdate = DateTimeOffset.Parse(startDate).UtcDateTime;
+            startDate = startDate.Replace("T", " ");
+            startDate = startDate.Replace("%3A", ":");
+            startDate = startDate.Replace('.', ',');
+            startDate = startDate.Replace("Z", "");
+            DateTime newstartdate = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss,fffffff", System.Globalization.CultureInfo.InvariantCulture);
 
             using (TweetsDBEntities1 entities = new TweetsDBEntities1())
             {
                 var batch = (from t in entities.Tweets
-                             where (t.stamp >= newstartdate)
+                             where (t.stamp > newstartdate)
                              orderby t.stamp
-                             select t).Take(50).ToList();
-
+                             select t).Take(25).ToList();
                 return batch;
             }
         }

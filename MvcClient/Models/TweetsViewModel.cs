@@ -24,7 +24,7 @@ namespace MvcClient.Models
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             int counter;
-            string startDate = "2016-01-01T00%3A00%3A00.000Z";
+            string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
             do
             {
                 counter = 0;
@@ -46,10 +46,14 @@ namespace MvcClient.Models
                         counter++;
                     }
 
-                    DateTime newstartdate = DateTimeOffset.Parse(laststamp).UtcDateTime;
-                    startDate = newstartdate.Year.ToString() + "-" + string.Format("{0:00}", newstartdate.Month) + "-" + string.Format("{0:00}", newstartdate.Day) + "T" + string.Format("{0:00}", newstartdate.Hour) + "%3A" + string.Format("{0:00}", newstartdate.Minute) + "%3A" + string.Format("{0:00}", newstartdate.Second) + "." + string.Format("{0:000}", newstartdate.Millisecond) + "Z";
+                    if (laststamp != string.Empty)
+                    {
+                        DateTime newstartdate = Convert.ToDateTime(laststamp);
+                        string milliseconds = String.Format("{0:.0000000}", Convert.ToDecimal(laststamp.Substring(laststamp.IndexOf('.'))));
+                        startDate = newstartdate.Year.ToString() + "-" + string.Format("{0:00}", newstartdate.Month) + "-" + string.Format("{0:00}", newstartdate.Day) + "T" + string.Format("{0:00}", newstartdate.Hour) + "%3A" + string.Format("{0:00}", newstartdate.Minute) + "%3A" + string.Format("{0:00}", newstartdate.Second) + milliseconds + "Z";
+                    }
                 }
-            } while (counter == 50);
+            } while (counter == 25);
         }
     }
 

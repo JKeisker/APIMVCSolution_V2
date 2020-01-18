@@ -299,7 +299,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3271</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3271/</IISUrl>
+          <IISUrl>http://localhost:3270/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

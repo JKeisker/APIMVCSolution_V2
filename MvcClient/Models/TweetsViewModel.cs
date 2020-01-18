@@ -14,7 +14,7 @@ namespace MvcClient.Models
 
         public async Task LoadTweets()
         {
-            string Baseurl = "http://localhost:3271/";
+            string Baseurl = "http://localhost:3270/";
 
             if (client.BaseAddress == null)
             {

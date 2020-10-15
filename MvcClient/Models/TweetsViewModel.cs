@@ -28,7 +28,8 @@ namespace MvcClient.Models
             do
             {
                 counter = 0;
-                HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate + "&endDate=2017-12-31T23%3A59%3A59.999Z");
+                //+"&endDate=2017-12-31T23%3A59%3A59.999Z"
+                HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate);
 
                 if (Res.IsSuccessStatusCode)
                 {

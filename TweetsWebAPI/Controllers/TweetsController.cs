@@ -10,7 +10,7 @@ namespace TweetsWebAPI.Controllers
 {
     public class TweetsController : ApiController
     {
-        public IEnumerable<Tweet> GET(string startDate, string endDate)
+        public IEnumerable<Tweet> GET(string startDate)
         {
             startDate = startDate.Replace("T", " ");
             startDate = startDate.Replace("%3A", ":");
@@ -26,6 +26,11 @@ namespace TweetsWebAPI.Controllers
                              select t).Take(25).ToList();
                 return batch;
             }
+        }
+
+        public string GET()
+        {
+            return "Hello thar !";
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MvcClient.Models
 {
     public class TweetsViewModel
     {
-        public Dictionary<string, TweetModel> TweetHashTable = new Dictionary<string, TweetModel>();
+        public List<TweetModel> TweetList = new List<TweetModel>();
         private static HttpClient client = new HttpClient();
 
         public async Task LoadTweets()
@@ -23,38 +23,14 @@ namespace MvcClient.Models
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            int counter;
             string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
-            do
+            HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate);
+
+            if (Res.IsSuccessStatusCode)
             {
-                counter = 0;
-                //+"&endDate=2017-12-31T23%3A59%3A59.999Z"
-                HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate);
-
-                if (Res.IsSuccessStatusCode)
-                {
-                    var Response = Res.Content.ReadAsStringAsync().Result;
-                    List<TweetModel> list = JsonConvert.DeserializeObject<List<TweetModel>>(Response);
-                    string laststamp = string.Empty;
-
-                    foreach (TweetModel item in list)
-                    {
-                        if (!TweetHashTable.ContainsKey(item.id))
-                        {
-                            TweetHashTable.Add(item.id, new TweetModel { id = item.id, stamp = item.stamp, text = item.text });
-                        }
-                        laststamp = item.stamp;
-                        counter++;
-                    }
-
-                    if (laststamp != string.Empty)
-                    {
-                        DateTime newstartdate = Convert.ToDateTime(laststamp);
-                        string milliseconds = String.Format("{0:.0000000}", Convert.ToDecimal(laststamp.Substring(laststamp.IndexOf('.'))));
-                        startDate = newstartdate.Year.ToString() + "-" + string.Format("{0:00}", newstartdate.Month) + "-" + string.Format("{0:00}", newstartdate.Day) + "T" + string.Format("{0:00}", newstartdate.Hour) + "%3A" + string.Format("{0:00}", newstartdate.Minute) + "%3A" + string.Format("{0:00}", newstartdate.Second) + milliseconds + "Z";
-                    }
-                }
-            } while (counter == 25);
+                var Response = Res.Content.ReadAsStringAsync().Result;
+                TweetList = JsonConvert.DeserializeObject<List<TweetModel>>(Response);
+            }
         }
     }
 

@@ -23,7 +23,7 @@ namespace TweetsWebAPI.Controllers
                 var batch = (from t in entities.Tweets
                              where (t.stamp > newstartdate)
                              orderby t.stamp
-                             select t).Take(25).ToList();
+                             select t).ToList();
                 return batch;
             }
         }

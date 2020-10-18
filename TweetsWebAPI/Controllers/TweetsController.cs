@@ -28,7 +28,7 @@ namespace TweetsWebAPI.Controllers
             }
         }
 
-        public string GETs()
+        public string GET()
         {
             return "Hello thar !";
         }

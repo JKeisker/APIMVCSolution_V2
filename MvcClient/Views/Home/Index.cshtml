@@ -45,7 +45,8 @@
     <script>
         $(document).ready(function () {
 
-            $.ajax({                                                       //call to Web API controller, bypassing MVC app controller
+            //call to Web API controller, bypassing MVC app controller
+            $.ajax({                                                       
                 type: 'GET',
                 url: 'http://localhost:3270/api/Tweets/GetTimeNow',
                 datatype: 'json',
@@ -55,9 +56,9 @@
             });
         });
 
+        //call to MVC app controller, instantiates view model which then calls API w/ HttpClient...this loads partial view
         function GetTweetsNow() {
-            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))'); //call to MVC app controller, instantiates view model
-                                                                                                 //which then calls API w/ HttpClient...this loads partial view
+            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))'); 
         }
 
     </script>

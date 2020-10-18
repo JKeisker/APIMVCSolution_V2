@@ -11,10 +11,13 @@
             Get Tweets!
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-3">
         <button id="btnGo" class="btn-lg" onclick="GetTweetsNow()">
             Go
         </button>
+    </div>
+    <div class="col-sm-3">
+        <div id="GetTime"></div>
     </div>
 </div>
 
@@ -40,8 +43,25 @@
 @section scripts
 {
     <script>
+        $(document).ready(function () {
+            //$("#GetTime").load('(Url.Action("GetTimeNow","Home",null, Request.Url.Scheme))'); call to MVC app controller
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3270/api/Tweets/GetTimeNow',
+                datatype: 'json',
+                success: function (data) {
+                    $('#GetTime').append(data);
+                }
+            });
+
+            //fetch('http://localhost:3270/api/Tweets/GetTimeNow')
+            //    .then(res => )
+        });
+
         function GetTweetsNow() {
-            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))');
+            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))'); //call to MVC app controller, instantiates view model
+                                                                                                 //which then calls API w/ HttpClient
         }
     </script>
 }

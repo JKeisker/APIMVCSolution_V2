@@ -2,6 +2,7 @@
 using MvcClient.Models;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System;
 
 namespace MvcClient.Controllers
 {
@@ -17,6 +18,12 @@ namespace MvcClient.Controllers
             TweetsViewModel tvm = new TweetsViewModel();
             await tvm.LoadTweets();
             return PartialView("_TweetGrid", tvm);
+        }
+
+        public string GetTimeNow()
+        {
+            DateTime d = DateTime.Now;
+            return d.ToString();
         }
     }
 }

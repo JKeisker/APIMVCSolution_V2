@@ -28,9 +28,14 @@ namespace TweetsWebAPI.Controllers
             }
         }
 
-        public string GET()
+        public string GETs()
         {
             return "Hello thar !";
+        }
+
+        public string GetTimeNow()
+        {
+            return DateTime.Now.ToString();
         }
     }
 }

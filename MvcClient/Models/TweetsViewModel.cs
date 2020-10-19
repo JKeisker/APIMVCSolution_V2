@@ -24,7 +24,7 @@ namespace MvcClient.Models
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
-            HttpResponseMessage Res = await client.GetAsync("api/Tweets?startDate=" + startDate);
+            HttpResponseMessage Res = await client.GetAsync("api/Tweets/GetHttpMsg?startDate=" + startDate);
 
             if (Res.IsSuccessStatusCode)
             {

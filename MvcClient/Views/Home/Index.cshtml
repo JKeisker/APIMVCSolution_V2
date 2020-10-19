@@ -58,7 +58,7 @@
 
         //call to MVC app controller, instantiates view model which then calls API w/ HttpClient...this loads partial view
         function GetTweetsNow() {
-            $("#RenderGrid").load('@(Url.Action("GetTweets","Home",null, Request.Url.Scheme))'); 
+            $("#RenderGrid").load('@(Url.Action("GetTweets2","Home",null, Request.Url.Scheme))'); 
         }
 
     </script>

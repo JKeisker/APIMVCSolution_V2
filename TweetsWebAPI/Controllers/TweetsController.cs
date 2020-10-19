@@ -57,8 +57,8 @@ namespace TweetsWebAPI.Controllers
                 ? (int)Math.Ceiling(total / (double)pagesize)
                 : 0;
 
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, batch);
-            response.Headers.Add("X-Paging-PageNo", pageno.ToString());
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, batch); //1) now returning HttpResponseMessage
+            response.Headers.Add("X-Paging-PageNo", pageno.ToString());                      //2) using Headers to contain meta data
             response.Headers.Add("X-Paging-PageSize", pagesize.ToString());
             response.Headers.Add("X-Paging-PageCount", pagecount.ToString());
             response.Headers.Add("X-Paging-TotalRecordCount", total.ToString());

@@ -4,32 +4,53 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace MvcClient.Models
 {
     public class TweetsViewModel
     {
         public List<TweetModel> TweetList = new List<TweetModel>();
-        private static HttpClient client = new HttpClient();
 
         public async Task LoadTweets()
         {
             string Baseurl = "http://localhost:3270/";
 
-            if (client.BaseAddress == null)
+            using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(Baseurl);
+                if (client.BaseAddress == null)
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+                }
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
+                HttpResponseMessage Res = await client.GetAsync("api/Tweets/Get?startDate=" + startDate);
+
+                if (Res.IsSuccessStatusCode)
+                {
+                    var Response = Res.Content.ReadAsStringAsync().Result;
+                    TweetList = JsonConvert.DeserializeObject<List<TweetModel>>(Response);
+                }
             }
-            client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
-            string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
-            HttpResponseMessage Res = await client.GetAsync("api/Tweets/GetHttpMsg?startDate=" + startDate);
-
-            if (Res.IsSuccessStatusCode)
+        public void LoadTweetsViaWebClient()
+        {
+            using (WebClient client = new WebClient())
             {
-                var Response = Res.Content.ReadAsStringAsync().Result;
-                TweetList = JsonConvert.DeserializeObject<List<TweetModel>>(Response);
+                string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
+                Uri address = new Uri("http://localhost:3270/api/Tweets/GetHttpMsg?startDate=" + startDate);
+
+                client.Headers.Clear();
+                client.Headers.Add(HttpRequestHeader.Accept, "application/json");
+                string json = client.DownloadString(address);
+
+                if (!string.IsNullOrEmpty(json))
+                {
+                    TweetList = JsonConvert.DeserializeObject<List<TweetModel>>(json);
+                }
             }
         }
     }

@@ -11,6 +11,8 @@ namespace MvcClient.Models
     public class TweetsViewModel
     {
         public List<TweetModel> TweetList = new List<TweetModel>();
+        public HttpResponseHeaders _HttpClientResponseHeaders { get; set; }
+        public WebHeaderCollection _WebClientResponseHeaders { get; set; }
 
         public async Task LoadTweets()
         {
@@ -26,11 +28,12 @@ namespace MvcClient.Models
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
-                HttpResponseMessage Res = await client.GetAsync("api/Tweets/Get?startDate=" + startDate);
+                HttpResponseMessage Res = await client.GetAsync("api/Tweets/GetHttpMsg?startDate=" + startDate);
 
                 if (Res.IsSuccessStatusCode)
                 {
                     var Response = Res.Content.ReadAsStringAsync().Result;
+                    _HttpClientResponseHeaders = Res.Headers;
                     TweetList = JsonConvert.DeserializeObject<List<TweetModel>>(Response);
                 }
             }
@@ -40,12 +43,24 @@ namespace MvcClient.Models
         {
             using (WebClient client = new WebClient())
             {
+                Dictionary<string, string> headers = new Dictionary<string, string>();
                 string startDate = "2016-01-01T00%3A00%3A00.0000000Z";
                 Uri address = new Uri("http://localhost:3270/api/Tweets/GetHttpMsg?startDate=" + startDate);
 
                 client.Headers.Clear();
                 client.Headers.Add(HttpRequestHeader.Accept, "application/json");
                 string json = client.DownloadString(address);
+                _WebClientResponseHeaders = client.ResponseHeaders;
+
+                //for (int i = 0; i < _WebClientResponseHeaders.Count; i++)
+                //{
+                //    string name = _WebClientResponseHeaders.GetKey(i);
+                //    string v = _WebClientResponseHeaders.Get(i);
+                //    if (!string.IsNullOrWhiteSpace(name) && !string.IsNullOrWhiteSpace(v))
+                //    {
+                //        headers.Add(name, v);
+                //    }
+                //}
 
                 if (!string.IsNullOrEmpty(json))
                 {

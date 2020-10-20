@@ -29,7 +29,7 @@ namespace TweetsWebAPI.Controllers
             }
         }
 
-        public HttpResponseMessage GetHttpMsg(string startDate, int pageno = 1, int pagesize = 5)
+        public HttpResponseMessage GetHttpMsg(string startDate, int pageno = 1, int pagesize = 100)
         {
             startDate = startDate.Replace("T", " ");
             startDate = startDate.Replace("%3A", ":");

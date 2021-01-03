@@ -10,7 +10,7 @@ namespace MvcClient.Models
     public class TweetsViewModel
     {
         public Dictionary<string, TweetModel> TweetHashTable = new Dictionary<string, TweetModel>();
-        private static HttpClient client =  new HttpClient();
+        private static HttpClient client = new HttpClient();
 
         public async Task LoadTweets()
         {
